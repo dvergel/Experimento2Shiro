@@ -6,6 +6,7 @@ package co.edu.uniandes.ecos.statusquo.business;
 
 import co.edu.uniandes.ecos.statusquo.persistence.dao.EpisodioDAO;
 import co.edu.uniandes.ecos.statusquo.persistence.entities.Episodio;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import javax.ejb.EJB;
@@ -31,6 +32,13 @@ public class EpisodioEJB {
         final HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("paciente", pacienteId);
         return facade.findByNamedQuery("Episodios.findByPaciente", params);
+    }
+    
+    public List<Episodio> consultarFechas(final Date fechaInicio,final Date fechaFin) throws Exception {
+        final HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("fechaInicio", fechaInicio);
+        params.put("fechaFin", fechaFin);
+        return facade.findByNamedQuery("Episodio.findByRangoFecha", params);
     }
 
     public void save(final Episodio entidad) throws Exception {

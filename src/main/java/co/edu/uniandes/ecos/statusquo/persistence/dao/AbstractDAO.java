@@ -70,6 +70,20 @@ public abstract class AbstractDAO<T> {
 
     }
 
+    public List<T> findByNamedQuery(final String queryName, final Map<String, Object> params, final int firstResult, final int maxResults) {
+        final Query q = getEntityManager().createNamedQuery(queryName);
+
+        final Set<Entry<String, Object>> paramList = params.entrySet();
+
+        for (Entry<String, Object> entry : paramList) {
+            q.setParameter(entry.getKey(), entry.getValue());
+        }
+        q.setMaxResults(maxResults);
+        q.setFirstResult(firstResult);
+        return q.getResultList();
+
+    }
+
     public T findSingleByNamedQuery(final String queryName, final Map<String, Object> params) {
         final TypedQuery<T> q = getEntityManager().createNamedQuery(queryName, entityClass);
 

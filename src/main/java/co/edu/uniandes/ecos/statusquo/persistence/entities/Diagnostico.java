@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Diagnostico.findAll", query = "SELECT d FROM Diagnostico d"),
     @NamedQuery(name = "Diagnostico.findById", query = "SELECT d FROM Diagnostico d WHERE d.id = :id"),
     @NamedQuery(name = "Diagnostico.findByCatalizadoresdolor", query = "SELECT d FROM Diagnostico d WHERE d.catalizadoresDolor = :catalizadoresdolor"),
+    @NamedQuery(name = "Diagnostico.findByGroupCatalizador", query = "SELECT d FROM Diagnostico d GROUP BY d.catalizadoresDolor,d.formula,d.episodio,d.id ORDER BY COUNT(d.catalizadoresDolor)"),
     @NamedQuery(name = "Diagnostico.findByFormula", query = "SELECT d FROM Diagnostico d WHERE d.formula = :formula")})
 public class Diagnostico implements Serializable {
 

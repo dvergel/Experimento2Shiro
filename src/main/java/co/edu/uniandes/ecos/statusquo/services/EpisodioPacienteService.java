@@ -1,12 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package co.edu.uniandes.ecos.statusquo.services;
 
-import co.edu.uniandes.ecos.statusquo.business.PacienteEJB;
-import co.edu.uniandes.ecos.statusquo.persistence.entities.Paciente;
+import co.edu.uniandes.ecos.statusquo.business.EpisodioEJB;
+import co.edu.uniandes.ecos.statusquo.persistence.entities.Episodio;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -15,7 +14,9 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
@@ -24,53 +25,68 @@ import org.json.simple.JSONObject;
 
 /**
  *
- * @author Alvaro
+ * @author Dev
  */
-@Path("/paciente")
+@Path("/episodioPaciente")
 @Stateless
 @Produces(MediaType.APPLICATION_JSON)
-public class PacienteService {
+public class EpisodioPacienteService {
 
     @EJB
-    private PacienteEJB pacienteService;
+    private EpisodioEJB episodioService;
 
     @GET
+    @Path("/getEpisodio")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll() {
-        List<Paciente> pacientes;
+    public Response getEpisodio(String id) {
+        Episodio episodio;
         try {
-            pacientes = pacienteService.consultar();
+            episodio = episodioService.consultarId(Long.parseLong(id));
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
-            pacientes = new ArrayList<Paciente>();
+            episodio = new Episodio();
         }
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(pacientes).build();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(episodio).build();
+    }
+    
+    @GET
+    @Path("/getAll")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAll(String paciente) {
+        List<Episodio> episodio;
+        try {
+            episodio = episodioService.consultarLista(Long.parseLong(paciente));
+        } catch (Exception ex) {
+            ex.printStackTrace(System.out);
+            episodio = new ArrayList<Episodio>();
+        }
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(episodio).build();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response crearPaciente(Paciente paciente) {
+    public Response crearEpisodio(Episodio episodio) {
 
         final JSONObject rta = new JSONObject();
 
         try {
-            pacienteService.save(paciente);
-            rta.put("paciente_id", paciente.getId());
+            episodioService.save(episodio);
+            rta.put("episodio_id", episodio.getId());
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
         }
 
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta.toJSONString()).build();
     }
-
+    
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public Response eliminarPaciente(Paciente paciente) {
+    public Response eliminarEpisodio(Episodio paciente) {
 
         final JSONObject rta = new JSONObject();
 
         try {
-            pacienteService.save(paciente);
+            episodioService.remove(paciente);
             rta.put("paciente_id", paciente.getId());
         } catch (Exception ex) {
             ex.printStackTrace(System.out);

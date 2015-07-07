@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Episodio.findAll", query = "SELECT e FROM Episodio e"),
     @NamedQuery(name = "Episodio.findById", query = "SELECT e FROM Episodio e WHERE e.id = :id"),
     @NamedQuery(name = "Episodio.findByFecha", query = "SELECT e FROM Episodio e WHERE e.fecha = :fecha"),
+    @NamedQuery(name = "Episodio.findByRangoFecha", query = "SELECT e FROM Episodio e WHERE e.fecha between :fechaInicio and :fechaFin"),
     @NamedQuery(name = "Episodio.findByMedicamentos", query = "SELECT e FROM Episodio e WHERE e.medicamentos = :medicamentos"),
     @NamedQuery(name = "Episodio.findByNiveldolor", query = "SELECT e FROM Episodio e WHERE e.nivelDolor = :niveldolor"),
     @NamedQuery(name = "Episodio.findByPatronessueno", query = "SELECT e FROM Episodio e WHERE e.patronesSueno = :patronessueno"),
