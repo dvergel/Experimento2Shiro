@@ -45,6 +45,7 @@ public class EpisodioPacienteService {
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
             episodio = new Episodio();
+            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(episodio).build();
         }
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(episodio).build();
     }
@@ -59,6 +60,7 @@ public class EpisodioPacienteService {
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
             episodio = new ArrayList<Episodio>();
+            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(episodio).build();
         }
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(episodio).build();
     }
@@ -74,6 +76,7 @@ public class EpisodioPacienteService {
             rta.put("episodio_id", episodio.getId());
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
+            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(0).build();
         }
 
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta.toJSONString()).build();
@@ -90,6 +93,7 @@ public class EpisodioPacienteService {
             rta.put("paciente_id", paciente.getId());
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
+            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(0).build();
         }
 
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta.toJSONString()).build();

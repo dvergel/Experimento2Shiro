@@ -43,6 +43,7 @@ public class DiagnosticoService {
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
             diagnosticos = new ArrayList<Diagnostico>();
+            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(diagnosticos).build();
         }
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(diagnosticos).build();
     }
@@ -57,6 +58,7 @@ public class DiagnosticoService {
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
             diagnostico = new Diagnostico();
+            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(diagnostico).build();
         }
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(diagnostico).build();
     }
@@ -71,6 +73,7 @@ public class DiagnosticoService {
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
             diagnosticos = new ArrayList<Diagnostico>();
+            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(diagnosticos).build();
         }
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(diagnosticos).build();
     }
@@ -85,6 +88,7 @@ public class DiagnosticoService {
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
             diagnosticos = new ArrayList<Diagnostico>();
+            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(diagnosticos).build();
         }
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(diagnosticos).build();
     }
@@ -100,6 +104,7 @@ public class DiagnosticoService {
             rta.put("diagnostico_id", diagnostico.getId());
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
+            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(0).build();
         }
 
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta.toJSONString()).build();
@@ -116,6 +121,7 @@ public class DiagnosticoService {
             rta.put("diagnostico_id", diagnostico.getId());
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
+            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(0).build();
         }
 
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta.toJSONString()).build();

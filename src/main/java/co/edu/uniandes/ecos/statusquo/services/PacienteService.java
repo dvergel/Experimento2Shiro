@@ -43,6 +43,7 @@ public class PacienteService {
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
             pacientes = new ArrayList<Paciente>();
+            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(pacientes).build();
         }
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(pacientes).build();
     }
@@ -58,6 +59,7 @@ public class PacienteService {
             rta.put("paciente_id", paciente.getId());
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
+            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(0).build();
         }
 
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta.toJSONString()).build();
@@ -74,6 +76,7 @@ public class PacienteService {
             rta.put("paciente_id", paciente.getId());
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
+            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(0).build();
         }
 
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta.toJSONString()).build();

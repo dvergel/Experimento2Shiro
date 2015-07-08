@@ -30,7 +30,8 @@ public class EpisodioDoctorService {
 
     @EJB
     private EpisodioEJB episodioService;
-    private EpisodioPacienteService service= new EpisodioPacienteService();
+    @EJB
+    private EpisodioPacienteService service;
 
     @GET
     @Path("/getEpisodio")

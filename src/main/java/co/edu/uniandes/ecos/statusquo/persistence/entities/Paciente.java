@@ -61,6 +61,18 @@ public class Paciente implements Serializable {
     @Size(max = 250)
     @Column(name = "SEGUNDO_APELLIDO", length = 250)
     private String segundoApellido;
+    @Size(max = 250)
+    @Column(name = "PASSWORD", length = 250)
+    private String password;
+    @Size(max = 250)
+    @Column(name = "CORREO_ELECTRONICO", length = 250)
+    private String correoElectronico;
+    @Size(max = 250)
+    @Column(name = "USUARIO", length = 250)
+    private String usuario;
+    @Size(max = 250)
+    @Column(name = "ROL", length = 250)
+    private String rol;
     @OneToMany(mappedBy = "paciente")
     private List<Episodio> episodios;
 
@@ -118,6 +130,38 @@ public class Paciente implements Serializable {
 
     public void setSegundoApellido(final String segundoApellido) {
         this.segundoApellido = segundoApellido;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     @XmlTransient
