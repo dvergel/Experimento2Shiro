@@ -4,9 +4,11 @@
  */
 package co.edu.uniandes.ecos.statusquo.services;
 
+import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -24,13 +26,14 @@ import org.apache.shiro.subject.Subject;
  * @author Dev
  */
 @Path("/login")
+@Stateless
+@Produces(MediaType.APPLICATION_JSON)
 public class LoginService {
 
     Realm realm = new JdbcRealm();
     DefaultSecurityManager sm = new DefaultSecurityManager(realm);
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response userAuth(String username,String password,boolean remember) {
         Response r = null;
